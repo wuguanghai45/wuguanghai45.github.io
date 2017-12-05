@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An enterprise-class UI design language and React-based implementation">
+    <meta name="description" content="A set of high-quality React components">
+    <meta name="description" content="One of best React UI library for enterprise background">
+    <title>北风吹寒的Demos</title>
+    <script>
+    (function() {
+      function isLocalStorageNameSupported() {
+        var testKey = 'test';
+        var storage = window.localStorage;
+        try {
+          storage.setItem(testKey, '1');
+          storage.removeItem(testKey);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
+      // 优先级提高到所有静态资源的前面，语言不对，加载其他静态资源没意义
+      var pathname = location.pathname;
+
+      function isZhCN(pathname) {
+        return /-cn\/?$/.test(pathname);
+      }
+      function getLocalizedPathname(path, zhCN) {
+        var pathname = path.startsWith('/') ? path : '/' + path;
+        if (!zhCN) { // to enUS
+          return /\/?index-cn/.test(pathname) ? '/' : pathname.replace('-cn', '');
+        } else if (pathname === '/') {
+          return '/index-cn';
+        } else if (pathname.endsWith('/')) {
+          return pathname.replace(/\/$/, '-cn/');
+        }
+        return pathname + '-cn';
+      }
+
+      // 兼容旧的 URL， `?locale=...`
+      var queryString = location.search;
+      if (queryString) {
+        var isZhCNConfig = queryString.indexOf('zh-CN') > -1;
+        if (isZhCNConfig && !isZhCN(pathname)) {
+          location.pathname = getLocalizedPathname(pathname, isZhCNConfig)
+        }
+      }
+
+      // 首页无视链接里面的语言设置 https://github.com/ant-design/ant-design/issues/4552
+      if (isLocalStorageNameSupported() && (pathname === '/' || pathname === '/index-cn')) {
+        var lang = (window.localStorage && localStorage.getItem('locale')) || (navigator.language.toLowerCase() === 'zh-cn' ? 'zh-CN' : 'en-US');
+        // safari is 'zh-cn', while other browser is 'zh-CN';
+        if ((lang === 'zh-CN') !== isZhCN(pathname)) {
+          location.pathname = getLocalizedPathname(pathname, lang === 'zh-CN');
+        }
+      }
+      document.documentElement.className += isZhCN(pathname) ? 'zh-cn' : 'en-us';
+    })()
+    </script>
+    <link rel="icon" href="https://t.alipayobjects.com/images/T1QUBfXo4fXXXXXXXX.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.cnpmjs.org/css?family=Lato:400,700|Raleway"/>
+    <link rel="stylesheet" type="text/css" href="/index-1.css"/>
+    <link rel="stylesheet" type="text/css" href="/index-2.css"/>
+    <style id="nprogress-style">
+      #nprogress { display: none }
+    </style>
+    <!--[if lte IE 10]>
+      <script
+        src="https://as.alipayobjects.com/g/component/??console-polyfill/0.2.2/index.js,media-match/2.0.2/media.match.min.js"></script>
+    <![endif]-->
+    <script>
+    if (!window.Intl) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/intl/1.0.1/??Intl.js,locale-data/jsonp/en.js,locale-data/jsonp/zh.js">' + '<' + '/script>');
+    }
+    if (!window.Promise) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
+    }
+    // Enable Google Analytics
+    if (!location.port) {
+      /* eslint-disable */
+      (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+      ga('create', 'UA-72788897-1', 'auto');
+      ga('send', 'pageview');
+      /* eslint-enable */
+    }
+    </script>
+  </head>
+  <body>
+    <div id="react-content">
+      <div class="page-wrapper" data-reactroot="" data-reactid="1" data-react-checksum="634621839"><header id="header" class="clearfix" data-reactid="2"><div class="ant-row" data-reactid="3"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-5 ant-col-lg-4" data-reactid="4"><a href="/" data-reactid="5"><span data-reactid="6">北风吹寒的个人页面</span></a></div><div class="ant-col-xs-0 ant-col-sm-0 ant-col-md-19 ant-col-lg-20" data-reactid="7"><div id="search-box" data-reactid="8"><div class="ant-select ant-select-combobox ant-select-enabled" data-reactid="9"><div class="ant-select-selection
+            ant-select-selection--single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" data-reactid="10"><div class="ant-select-selection__rendered" data-reactid="11"><div style="display:block;user-select:none;-webkit-user-select:none;" unselectable="unselectable" class="ant-select-selection__placeholder" data-reactid="12">搜索组件...</div><ul data-reactid="13"><li class="ant-select-search ant-select-search--inline" data-reactid="14"><div class="ant-select-search__field__wrap" data-reactid="15"><input value="" class="ant-select-search__field" data-reactid="16"/><span class="ant-select-search__field__mirror" data-reactid="17"><!-- react-text: 18 --><!-- /react-text --><!-- react-text: 19 --> <!-- /react-text --></span></div></li></ul></div><span class="ant-select-arrow" style="user-select:none;-webkit-user-select:none;" unselectable="unselectable" data-reactid="20"><b data-reactid="21"></b></span></div></div></div><button type="button" class="ant-btn lang ant-btn-ghost ant-btn-sm" data-reactid="22"><span data-reactid="23">EN</span></button><ul class="ant-menu ant-menu-horizontal ant-menu-light ant-menu-root" role="menu" aria-activedescendant="" id="nav" tabindex="0" data-reactid="24"><li class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="25"><a href="/" data-reactid="26"><span data-reactid="27">主页</span></a></li><li class="ant-menu-item-selected ant-menu-item" role="menuitem" aria-selected="true" data-reactid="28"><a href="/docs/react/introduce-cn" data-reactid="29"><span data-reactid="30">组件</span></a></li></ul></div></div></header><div class="main-wrapper" data-reactid="31"><div class="ant-row" data-reactid="32"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-6 ant-col-lg-4" data-reactid="33"><ul class="ant-menu ant-menu-inline aside-container ant-menu-light ant-menu-root" role="menu" aria-activedescendant="" tabindex="0" data-reactid="34"><li style="padding-left:24px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="35"><a href="/docs/react/introduce-cn" data-reactid="36">Demo展示页如何来的</a></li><li class="ant-menu-submenu-inline ant-menu-submenu-open ant-menu-submenu" data-reactid="37"><div style="padding-left:24px;" class="ant-menu-submenu-title" aria-expanded="true" aria-owns="例子$Menu" aria-haspopup="true" data-reactid="38"><h4 data-reactid="39">例子</h4></div><ul class="ant-menu ant-menu-inline  ant-menu-sub" role="menu" aria-activedescendant="" id="例子$Menu" data-reactid="40"><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="41"><a href="/components/moment-cn/" data-reactid="42">时钟控件相关</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="43"><a href="/components/mousehovercomponent-cn/" data-reactid="44">封装鼠标hover组件</a></li><li style="padding-left:48px;" class="ant-menu-item" role="menuitem" aria-selected="false" data-reactid="45"><a href="/components/tagcloud-cn/" data-reactid="46">标签云</a></li><li style="padding-left:48px;" class="ant-menu-item-selected ant-menu-item" role="menuitem" aria-selected="true" data-reactid="47"><a href="/components/divdrag-cn/" data-reactid="48">div拖动</a></li></ul></li></ul></div><div class="main-container main-container-component ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-lg-20" data-reactid="49"><article data-reactid="50"><div class="toc-affix" data-reactid="51"><div class="" data-reactid="52"><ul class="toc demos-anchor" data-reactid="53"><li title="div拖动左右布局" data-reactid="54"><a href="#components-divdrag-demo-demo1" data-reactid="55">div拖动左右布局</a></li></ul></div></div><section class="markdown" data-reactid="56"><h1 data-reactid="57"><!-- react-text: 58 -->div拖动<!-- /react-text --><span class="subtitle" data-reactid="59">div拖动</span></h1><section class="markdown" data-reactid="60"></section><h2 data-reactid="61"><span data-reactid="62">代码演示</span><i class="anticon anticon-appstore code-box-expand-trigger" title="展开全部代码" data-reactid="63"></i></h2></section><div class="ant-row" style="margin-left:-8px;margin-right:-8px;" data-reactid="64"><div style="padding-left:8px;padding-right:8px;" class="ant-col-12 code-boxes-col-2-1" data-reactid="65"><section class="code-box" id="components-divdrag-demo-demo1" data-reactid="66"><section class="code-box-demo" data-reactid="67"><div data-reactid="68"><div id="wrap" style="display:flex;" data-reactid="69"><div style="flex:1;background:red;height:150px;display:inline-block;min-width:10px;" data-reactid="70"></div><div style="width:5px;background:blue;height:150px;display:inline-block;cursor:e-resize;" data-reactid="71"></div><div style="flex:1;background:black;height:150px;display:inline-block;min-width:10px;" data-reactid="72"></div></div></div></section><section class="code-box-meta markdown" data-reactid="73"><div class="code-box-title" data-reactid="74"><a href="#components-divdrag-demo-demo1" data-reactid="75">div拖动左右布局</a></div><div data-reactid="76"><p data-reactid="77"><!-- react-text: 78 -->有客户需要一个可以拖动的布局。。自己尝试写了一个<!-- /react-text --></p></div><i title="Show Code" class="anticon anticon-down-circle-o collapse" data-reactid="79"></i></section><section class="highlight-wrapper" data-reactid="80"><div class="highlight" data-reactid="81"><div class="code-box-actions" data-reactid="82"><form action="https://codepen.io/pen/define" method="POST" target="_blank" data-reactid="83"><input type="hidden" name="data" value="{&quot;title&quot;:&quot;div拖动左右布局 - 北风吹寒的Demos Demo&quot;,&quot;html&quot;:&quot;&lt;div id=\&quot;container\&quot; style=\&quot;padding: 24px\&quot;&gt;&lt;/div&gt;\n&lt;script&gt;\n  var mountNode = document.getElementById(&#x27;container&#x27;);\n&lt;/script&gt;&quot;,&quot;js&quot;:&quot;&quot;,&quot;css&quot;:&quot;@import &#x27;antd/dist/antd.css&#x27;;\n\n&quot;,&quot;editors&quot;:&quot;001&quot;,&quot;css_external&quot;:&quot;https://unpkg.com/antd/dist/antd.css&quot;,&quot;js_external&quot;:&quot;https://unpkg.com/react/dist/react.js;https://unpkg.com/react-dom/dist/react-dom.js;https://unpkg.com/moment/min/moment-with-locales.js;https://unpkg.com/antd/dist/antd-with-locales.js&quot;,&quot;js_pre_processor&quot;:&quot;typescript&quot;}" data-reactid="84"/><input type="submit" value="Create New Pen with Prefilled Data" class="code-box-codepen" data-reactid="85"/></form><i class="anticon anticon-copy code-box-code-copy" data-reactid="86"></i></div><pre class="language-jsx" data-reactid="87"><code data-reactid="88"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> styles <span class="token operator">=</span> <span class="token punctuation">{</span>
+  wrap<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    width<span class="token punctuation">:</span> <span class="token number">660</span><span class="token punctuation">,</span> 
+    height<span class="token punctuation">:</span> <span class="token number">150</span><span class="token punctuation">,</span>
+    margin<span class="token punctuation">:</span> <span class="token string">"10px auto"</span><span class="token punctuation">,</span>
+    position<span class="token punctuation">:</span> <span class="token string">"relative"</span><span class="token punctuation">,</span>
+    clear<span class="token punctuation">:</span> <span class="token string">"both"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  left<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    flex<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    background<span class="token punctuation">:</span> <span class="token string">"red"</span><span class="token punctuation">,</span>
+    height<span class="token punctuation">:</span> <span class="token number">150</span><span class="token punctuation">,</span>
+    display<span class="token punctuation">:</span> <span class="token string">"inline-block"</span><span class="token punctuation">,</span>
+    minWidth<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  right<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    flex<span class="token punctuation">:</span> <span class="token string">"1"</span><span class="token punctuation">,</span>
+    background<span class="token punctuation">:</span> <span class="token string">"black"</span><span class="token punctuation">,</span>
+    height<span class="token punctuation">:</span> <span class="token number">150</span><span class="token punctuation">,</span>
+    display<span class="token punctuation">:</span> <span class="token string">"inline-block"</span><span class="token punctuation">,</span>
+    minWidth<span class="token punctuation">:</span> <span class="token number">10</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  middle<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    width<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+    background<span class="token punctuation">:</span> <span class="token string">"blue"</span><span class="token punctuation">,</span>
+    height<span class="token punctuation">:</span> <span class="token number">150</span><span class="token punctuation">,</span>
+    display<span class="token punctuation">:</span> <span class="token string">"inline-block"</span><span class="token punctuation">,</span>
+    cursor<span class="token punctuation">:</span> <span class="token string">"e-resize"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">Demo</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+      width<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  componentDidMount <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span>onmousemove <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onDocumentMouseMove<span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span>onmouseup <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>onDocumentMouseUp<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  onLabelMousedown <span class="token operator">=</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>drag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>downPageX <span class="token operator">=</span> e<span class="token punctuation">.</span>pageX<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>downOffsetWidth <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>label1<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  onDocumentMouseMove <span class="token operator">=</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> width <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>downOffsetWidth<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>drag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      width <span class="token operator">=</span> width <span class="token operator">+</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>pageX <span class="token operator">-</span> <span class="token keyword">this</span><span class="token punctuation">.</span>downPageX<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>width <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> width <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        width<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  onDocumentMouseUp <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>drag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>wrap<span class="token punctuation">'</span></span> <span class="token attr-name">ref</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>ref <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">this</span><span class="token punctuation">.</span>wrap <span class="token operator">=</span> ref<span class="token punctuation">}</span></span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span>display<span class="token punctuation">:</span> <span class="token string">"flex"</span><span class="token punctuation">}</span><span class="token punctuation">}</span></span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ref</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>ref<span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">this</span><span class="token punctuation">.</span>label1 <span class="token operator">=</span> ref <span class="token punctuation">}</span></span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>styles<span class="token punctuation">.</span>left<span class="token punctuation">,</span> width<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>width<span class="token punctuation">,</span> flex<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>width <span class="token operator">?</span> <span class="token keyword">null</span> <span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">onMouseDown</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onLabelMousedown<span class="token punctuation">}</span></span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>styles<span class="token punctuation">.</span>middle<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token punctuation">=</span><span class="token punctuation">{</span>styles<span class="token punctuation">.</span>right<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+ReactDOM<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Demo</span> <span class="token punctuation">/></span></span>
+<span class="token punctuation">,</span> mountNode<span class="token punctuation">)</span></code></pre></div></section></section></div><div style="padding-left:8px;padding-right:8px;" class="ant-col-12 code-boxes-col-2-1" data-reactid="89"></div></div><section class="markdown api-container" data-reactid="90"></section></article></div></div><div class="ant-row" data-reactid="91"><div class="ant-col-xs-24 ant-col-sm-24 ant-col-md-18 ant-col-md-offset-6 ant-col-lg-20 ant-col-lg-offset-4" data-reactid="92"><section class="prev-next-nav" data-reactid="93"><a class="prev-page" href="/components/tagcloud-cn/" data-reactid="94">标签云</a></section></div></div></div><footer id="footer" data-reactid="95"><div class="outer" style="height:10px;" data-reactid="96"><div class="visit" style="text-align:center;" data-reactid="97"><span id="busuanzi_container_site_pv" style="display:none;" data-reactid="98"><span id="site-visit" data-reactid="99"><!-- react-text: 100 -->本站到访数:<!-- /react-text --><span id="busuanzi_value_site_uv" data-reactid="101"></span></span></span><span id="busuanzi_container_page_pv" style="display:none;" data-reactid="102"><span id="page-visit" data-reactid="103"><!-- react-text: 104 -->, 本页阅读量:<!-- /react-text --><span id="busuanzi_value_page_pv" data-reactid="105"></span></span></span></div></div><ul data-reactid="106"><li data-reactid="107"><h2 data-reactid="108"><i class="anticon anticon-github" data-reactid="109"></i><!-- react-text: 110 --> GitHub<!-- /react-text --></h2></li><li data-reactid="111"><h2 data-reactid="112"><i class="anticon anticon-link" data-reactid="113"></i><!-- react-text: 114 --> <!-- /react-text --><span data-reactid="115">友情链接</span></h2></li><li data-reactid="116"><h2 data-reactid="117"><i class="anticon anticon-customer-service" data-reactid="118"></i><!-- react-text: 119 --> <!-- /react-text --><span data-reactid="120">社区</span></h2></li><li data-reactid="121"><h2 data-reactid="122"><!-- react-text: 123 -->Copyright © <!-- /react-text --><!-- react-text: 124 -->2017<!-- /react-text --></h2></li></ul></footer></div>
+    </div>
+    <script src="/common.js"></script>
+    <script src="/index.js"></script>
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  </body>
+  
+
+</html>

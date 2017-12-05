@@ -1,1 +1,1 @@
-webpackJsonp([5,8],{768:function(t,e){t.exports={content:["article"],meta:{order:3,category:"\u968f\u4fbf\u5199\u5199\u4f8b\u5b50\u7ec4\u4ef6",title:"\u6807\u7b7e\u4e91",subtitle:"\u6807\u7b7e\u4e91",filename:"components/tagcloud/index.zh-CN.md"},toc:["ul"]}}});
+webpackJsonp([6,10],{770:function(t,e){t.exports={content:["article"],meta:{order:3,category:"\u4f8b\u5b50",title:"\u6807\u7b7e\u4e91",subtitle:"\u6807\u7b7e\u4e91",filename:"components/tagcloud/index.zh-CN.md"},toc:["ul"]}}});
